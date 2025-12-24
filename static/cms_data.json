@@ -1,0 +1,54 @@
+{
+  "name": "welcome",
+  "title": "na bhavani",
+  "subtitle": "",
+  "hero_text": "this is my portfolio",
+  "image": "uploads/8064305-uhd_3840_2160_30fps.mp4",
+  "about_text": "I am Bhavani S, a Computer Science Engineering student at PET Engineering College.",
+  "skills": [
+    {
+      "name": "Python",
+      "icon": ""
+    },
+    {
+      "name": "Django",
+      "icon": ""
+    }
+  ],
+  "achievements": [
+    {
+      "title": "First Prize - Poster",
+      "desc": "Won first prize at college poster competition."
+    }
+  ],
+  "experience": [
+    {
+      "year": "2025",
+      "role": "Full Stack Developer",
+      "company": "G2G Technologies",
+      "description": "Worked on front and back end."
+    }
+  ],
+  "projects": [
+    {
+      "name": "To-Do App",
+      "desc": "Simple to-do list with localStorage",
+      "code": "",
+      "demo": ""
+    }
+  ],
+  "blogs": [
+    {
+      "title": "My First Blog",
+      "excerpt": "Intro to my journey",
+      "content": "I started learning Python...",
+      "date": "2025-01-01"
+    }
+  ],
+  "contact_email": "sb.bhavani.sb@gmail.com",
+  "social_links": {
+    "linkedin": "https://www.linkedin.com/in/sb-bhavani-sb",
+    "github": "https://github.com/Bhavani-SB"
+  },
+  "hero_media": "pexels-apasaric-618079.jpg"
+}

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Segoe UI",sans-serif;
+}
+
+/* Hero */
+.hero{
+  position:relative;
+  width:100%;
+  height:100vh;
+  overflow:hidden;
+}
+
+/* Background Video */
+.bg-video{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  min-width:100%;
+  min-height:100%;
+  z-index:-2;
+}
+
+/* Gradient Overlay */
+.overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    120deg,
+    rgba(5,15,40,0.9),
+    rgba(20,30,90,0.7),
+    rgba(0,120,255,0.45)
+  );
+  z-index:-1;
+}
+
+/* Navbar */
+nav{
+  position:absolute;
+  top:0;
+  width:100%;
+  padding:20px 60px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  color:#fff;
+  font-size:28px;
+  font-weight:600;
+}
+
+nav ul{
+  list-style:none;
+  display:flex;
+  gap:30px;
+}
+
+nav ul li a{
+  color:#eee;
+  text-decoration:none;
+  font-size:16px;
+  transition:0.3s;
+}
+
+nav ul li a:hover{
+  color:#00c6ff;
+}
+
+/* Hamburger */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+}
+
+.hamburger span{
+  width:26px;
+  height:3px;
+  background:#fff;
+  border-radius:2px;
+}
+
+/* Hero Content */
+.content{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  color:#fff;
+  max-width:720px;
+  width:90%;
+}
+
+.fade{
+  opacity:0;
+  transform:translateY(25px);
+  animation:fadeUp 1s ease forwards;
+}
+
+.fade.delay1{ animation-delay:0.3s; }
+.fade.delay2{ animation-delay:0.6s; }
+.fade.delay3{ animation-delay:0.9s; }
+
+@keyframes fadeUp{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.content h1{
+  font-size:52px;
+  margin-bottom:12px;
+}
+
+.content h1 span{
+  color:#00c6ff;
+}
+
+.content h3{
+  font-size:26px;
+  margin-bottom:10px;
+}
+
+.content p{
+  font-size:16px;
+  line-height:1.7;
+  opacity:0.9;
+}
+
+/* Mobile */
+@media(max-width:768px){
+  nav{
+    padding:15px 25px;
+  }
+
+  nav ul{
+    position:absolute;
+    top:65px;
+    right:25px;
+    background:rgba(5,15,40,0.95);
+    flex-direction:column;
+    gap:18px;
+    padding:20px 25px;
+    border-radius:12px;
+    display:none;
+  }
+
+  nav ul.show{
+    display:flex;
+  }
+
+  .hamburger{
+    display:flex;
+  }
+
+  .content h1{
+    font-size:34px;
+  }
+
+  .content h3{
+    font-size:20px;
+  }
+
+  .content p{
+    font-size:15px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+
+  <!-- Background Video -->
+ {% if data.hero_media.endswith('.mp4') %}
+  <video class="bg-video" autoplay muted loop playsinline>
+    <source src="{{ url_for('static', filename='uploads/' + data.hero_media) }}" type="video/mp4">
+  </video>
+{% else %}
+  <div class="bg-video"
+       style="background:url('{{ url_for('static', filename='uploads/' + data.hero_media) }}') center/cover no-repeat;">
+  </div>
+{% endif %}
+
+
+
+  <div class="overlay"></div>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">Portfolio</div>
+
+    <ul id="menu">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Experience</a></li>
+      <li><a href="#">Projects</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <!-- Content -->
+  <div class="content">
+   <h1 class="fade delay1">Hi, I’m <span>{{ data.name }}</span></h1>
+   <h3 class="fade delay2">{{ data.title }}</h3>
+   <p class="fade delay3">{{ data.hero_text }}</p>
+  </div>
+</div>
+
+<script>
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("show");
+}
+</script>
+
+</body>
+</html>
